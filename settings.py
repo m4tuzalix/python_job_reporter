@@ -4,6 +4,7 @@ from os.path import dirname, join, abspath
 sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 from selenium.webdriver.common.by import By
 from JavaScript.javascript import main_js
+
 class PageSettings(object):
     def __init__(self, link=None, all_links=None, city_name=None, bar_scroll=None, date_posted=None):
         self.all_links = all_links
