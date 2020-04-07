@@ -7,7 +7,7 @@ from time import sleep
 
 class PageSettings(object):
     def __init__(self):
-        self.browser = webdriver.Chrome("D:/netguru/features/chromedriver.exe")
+        self.browser = webdriver.Chrome("chromedriver.exe")
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--enable-javascript")
         self.browser.set_script_timeout(20)
