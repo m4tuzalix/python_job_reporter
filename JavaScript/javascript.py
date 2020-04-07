@@ -7,7 +7,7 @@ main_js = """
 
     function days_checker(string){
         day = ""
-        if(string.includes("godz") || string.includes("New")){
+        if(string.includes("godz")){
             day = 1
         }
         else{
@@ -36,4 +36,15 @@ main_js = """
         }
     }
     return justJoinScraper()
+"""
+scroll_js = """
+    const bar = arguments[0];
+    const timer = arguments[1];
+    const main_link = arguments[2];
+    const scroll_bar = document.querySelector(bar).scroll(0,timer)
+    if(main_link.includes("linkedin")){
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+            return "bottom"
+        }
+    }
 """
