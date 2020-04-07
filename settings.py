@@ -11,7 +11,7 @@ class PageSettings(object):
         self.city_name = city_name
         self.bar_scroll = bar_scroll
         self.date_posted = date_posted
-        self.browser = webdriver.Chrome("D:/netguru/features/chromedriver.exe")
+        self.browser = webdriver.Chrome("chromedriver.exe")
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--enable-javascript")
         self.browser.set_script_timeout(20)
