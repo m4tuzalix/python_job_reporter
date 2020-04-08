@@ -23,8 +23,8 @@ class Starter(Excel):
 
 if __name__ == "__main__":
     key_words = ["developer"]
-    city = "warszawa".lower() #// no polish signs
-    start = Starter(city)
+    city = "warszawa" #// no polish signs
+    start = Starter(city.lower())
     data = start.start_fetching()
     start.create_report(data, key_words)
     
