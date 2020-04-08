@@ -1,4 +1,4 @@
-from manual_fetch_model import ManualFetch
+from PageModels.manual_fetch_model import ManualFetch
 from Selectors.page_selectors import *
 from selenium.webdriver.common.by import By
 
@@ -22,7 +22,7 @@ class JustJoinIt(ManualFetch):
                 self.timer += 700
             except:
                 continue
-        self.browser.quit()
+        self.close_web()
         return self.links_array
 
 class LinkedIn(ManualFetch):
@@ -48,5 +48,5 @@ class LinkedIn(ManualFetch):
                 self.link_validation(link, "linkedin")
             except:
                 continue
-        self.browser.quit()
+        self.close_web()
         return self.links_array
