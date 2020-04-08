@@ -9,3 +9,5 @@ class linkedin:
     city = "span.job-result-card__location"
     bar_scroll = "html"
     date_posted = "time.job-result-card__listdate--new"
+    #-----main.py used-----#
+    search_results = "span.results-context-header__job-count"
