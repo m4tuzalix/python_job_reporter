@@ -1,10 +1,5 @@
 # Job scraper from the most popular services in Poland (Currently 2 - will be more !)
 
-# How to run
-1. clone this repository
-2. open repository location in cmd/powershell
-3. pip install -r requirements.txt
-4. python starter.py
 
 # Info
 - Scraper gathers the adverts which have appeared within 24 hours
@@ -16,6 +11,12 @@
 # Setup
 - open starter.py in your editor
 - find variable 'key_words' and add as many words as you want. I recommend max 3. 
+
+# How to run
+1. clone this repository
+2. open repository location in cmd/powershell
+3. pip install -r requirements.txt
+4. python starter.py
 
 
 
