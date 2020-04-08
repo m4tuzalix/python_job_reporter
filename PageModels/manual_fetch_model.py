@@ -57,7 +57,6 @@ class ManualFetch(Database):
         except:
             return False
 
-
     def close_web(self):
         self.close()
         self.browser.quit()
