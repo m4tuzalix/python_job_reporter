@@ -1,15 +1,17 @@
 from sqlite3 import Connection
-from datetime import datetime
+from datetime import datetime, timedelta
+from os import path
 
 class Database(Connection):
     def __init__(self, **args):
-        Connection.__init__(self, 'main.db')
+        Connection.__init__(self, path.abspath('Database/main.db'))
         self.cur = self.cursor()
-        self.now = str(datetime.now().date())
+        self.date = datetime.now().date()
+        self.time = str(datetime.now().time())
     
     def db_main(self):
-        self.cur.execute("CREATE TABLE IF NOT EXISTS links(id INTEGER PRIMARY KEY, link TEXT UNIQUE, date TEXT)")
-        self.cur.execute("DELETE FROM links WHERE date != ?", (self.now,))
+        self.cur.execute("CREATE TABLE IF NOT EXISTS links(id INTEGER PRIMARY KEY, link TEXT UNIQUE, date TEXT, time TEXT)")
+        self.cur.execute("DELETE FROM links WHERE date = ?", (str(self.date+timedelta(days=3)),))
         self.commit()
         return True
 
@@ -24,5 +26,5 @@ class Database(Connection):
         return result
 
     def add_links(self,link):
-        self.cur.execute("INSERT INTO links VALUES(NULL,?,?)", (link,self.now,))
+        self.cur.execute("INSERT INTO links VALUES(NULL,?,?,?)", (link,self.date,self.time,))
         self.commit()
