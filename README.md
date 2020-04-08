@@ -10,6 +10,7 @@
 
 # Setup
 - open starter.py in your editor
+- find variable 'city' and put the city you are interested about
 - find variable 'key_words' and add as many words as you want. I recommend max 3. 
 
 # Requirements
