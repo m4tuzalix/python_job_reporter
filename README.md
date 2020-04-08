@@ -23,6 +23,7 @@
 2. open repository location in cmd/powershell
 3. pip install -r requirements.txt
 4. python starter.py
+5. Report will be created in "Day Reports" folder :) Good luck !
 
 
 
