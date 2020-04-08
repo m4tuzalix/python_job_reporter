@@ -1,13 +1,12 @@
 main_js = """
-    const timer_value = arguments[0];
-    const days = arguments[1];
-    const city_name = arguments[2];
-    const link = arguments[3];
-    const date = arguments[4];
+    const days = arguments[0];
+    const city_name = arguments[1];
+    const link = arguments[2];
+    const date = arguments[3];
 
     function days_checker(string){
         day = ""
-        if(string.includes("godz")){
+        if(string.includes("godz") || string.includes("min")){
             day = 1
         }
         else{
@@ -29,6 +28,7 @@ main_js = """
         if(String(city).includes("Wrocław")){
             if(String(date_posted).includes("New") != true){
                 const days_ago = days_checker(date_posted)
+                console.log(days_ago)
                 if(days_ago > days){
                     return false
                 }
