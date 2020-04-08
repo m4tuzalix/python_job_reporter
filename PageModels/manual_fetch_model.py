@@ -6,10 +6,11 @@ from Database.database import Database
 from os import path
 
 class ManualFetch(Database):
-    def __init__(self, link=None, all_links=None, city_name=None, bar_scroll=None, date_posted=None):
+    def __init__(self, link=None, all_links=None, city=None, city_name=None, bar_scroll=None, date_posted=None):
         super(ManualFetch, self).__init__()
         self.all_links = all_links
         self.link = link
+        self.city = city
         self.city_name = city_name
         self.bar_scroll = bar_scroll
         self.date_posted = date_posted
@@ -33,16 +34,18 @@ class ManualFetch(Database):
 
     def link_validation(self, link, *args):
         link_href = link.find_element(By.TAG_NAME, "a").get_attribute("href")
-        validation = self.browser.execute_script(main_js, self.days, self.city_name, link, self.date_posted, self.bar_scroll)
+        validation = self.browser.execute_script(main_js, self.days, self.city, self.city_name, link, self.date_posted, self.bar_scroll)
         if validation != False:
             double_check = self.check_db(str(link_href))
-            if double_check:
-                if "linkedin" in args:
-                    refId = link_href.index("refId")
+            if "linkedin" in args:
+                refId = link_href.index("refId")
+                if double_check:
                     self.add_links(str(link_href[:refId]))
-                else:
+                    self.links_array.append(link_href)
+            else:
+                if double_check:
                     self.add_links(str(link_href))
-                self.links_array.append(str(link_href))  
+                    self.links_array.append(link_href)
         else:
             return False
         return True

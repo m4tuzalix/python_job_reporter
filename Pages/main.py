@@ -3,11 +3,12 @@ from Selectors.page_selectors import *
 from selenium.webdriver.common.by import By
 
 class JustJoinIt(ManualFetch):
-    def __init__(self):
+    def __init__(self, city):
         self.selector = justJoinIt
-        super(JustJoinIt, self).__init__(link="https://justjoin.it/wroclaw", 
+        super(JustJoinIt, self).__init__(link=f"https://justjoin.it/{city}", 
                 all_links=self.selector.all_links, 
-                city_name=self.selector.city,
+                city=self.selector.city,
+                city_name=city,
                 bar_scroll = self.selector.bar_scroll,
                 date_posted=self.selector.date_posted)
         self.open_web()
@@ -26,11 +27,12 @@ class JustJoinIt(ManualFetch):
         return self.links_array
 
 class LinkedIn(ManualFetch):
-    def __init__(self):
+    def __init__(self, city):
         self.selector = linkedin
-        super(LinkedIn, self).__init__(link="https://www.linkedin.com/jobs/search?location=Wroc%C5%82aw%2C%2BWoj.%2BDolno%C5%9Bl%C4%85skie%2C%2BPolska&trk=public_jobs_jobs-search-bar_search-submit&f_TP=1&redirect=false&position=1&pageNum=0", 
+        super(LinkedIn, self).__init__(link=f"https://www.linkedin.com/jobs/search?location={city}&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0&f_TP=1", 
                 all_links=self.selector.all_links, 
-                city_name=self.selector.city,
+                city=self.selector.city,
+                city_name=city,
                 bar_scroll = self.selector.bar_scroll,
                 date_posted=self.selector.date_posted)
         self.open_web()

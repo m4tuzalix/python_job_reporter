@@ -1,9 +1,9 @@
 main_js = """
     const days = arguments[0];
-    const city_name = arguments[1];
-    const link = arguments[2];
-    const date = arguments[3];
-
+    const city_selector = arguments[1];
+    const city_name = arguments[2].charAt(0).toUpperCase()+arguments[2].slice(1)
+    const link = arguments[3];
+    const date = arguments[4];
     function days_checker(string){
         day = ""
         if(string.includes("godz") || string.includes("min")){
@@ -24,8 +24,8 @@ main_js = """
     
     function justJoinScraper(){
         const date_posted = link.querySelector(date).innerText
-        const city = link.querySelector(city_name).innerText
-        if(String(city).includes("Wrocław")){
+        const city = link.querySelector(city_selector).innerText
+        if(String(city).includes(city_name)){
             if(String(date_posted).includes("New") != true){
                 const days_ago = days_checker(date_posted)
                 console.log(days_ago)
