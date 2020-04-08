@@ -36,15 +36,13 @@ class ManualFetch(Database):
         validation = self.browser.execute_script(main_js, self.days, self.city_name, link, self.date_posted, self.bar_scroll)
         if validation != False:
             double_check = self.check_db(str(link_href))
-            if "linkedin" in args:
-                refId = link_href.index("refId")
-                if double_check:
+            if double_check:
+                if "linkedin" in args:
+                    refId = link_href.index("refId")
                     self.add_links(str(link_href[:refId]))
-                    self.links_array.append(link_href)
-            else:
-                if double_check:
+                else:
                     self.add_links(str(link_href))
-                    self.links_array.append(link_href)
+                self.links_array.append(str(link_href))  
         else:
             return False
         return True
