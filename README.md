@@ -12,12 +12,14 @@
 - open starter.py in your editor
 - find variable 'key_words' and add as many words as you want. I recommend max 3. 
 
+# Requirements
+1.  Python 3.x required
+2. Chrome browser required (chromedriver.exe in repo is for version 80)
+3. If you have another version of chrome, go to this web https://chromedriver.chromium.org/downloads and find the proper one
+4. Replace the downloaded chromedriver with the one existing in repo
+
 # How to run
 1. clone this repository
-1.1 Python 3.x required
-1.2 Chrome browser required (chromedriver.exe in repo is for version 80)
-1.3 If you have another version of chrome, go to this web https://chromedriver.chromium.org/downloads and find the proper one
-1,4 Replace the downloaded chromedriver with the one existing in repo
 2. open repository location in cmd/powershell
 3. pip install -r requirements.txt
 4. python starter.py
