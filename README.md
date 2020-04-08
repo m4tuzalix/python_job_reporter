@@ -14,10 +14,10 @@
 
 # How to run
 1. clone this repository
-  Python 3.x required
-  Chrome browser required (chromedriver.exe in repo is for version 80)
-  If you have another version of chrome, go to this web https://chromedriver.chromium.org/downloads and find the proper one
-  Replace the downloaded chromedriver with the one existing in repo
+1.1 Python 3.x required
+1.2 Chrome browser required (chromedriver.exe in repo is for version 80)
+1.3 If you have another version of chrome, go to this web https://chromedriver.chromium.org/downloads and find the proper one
+1,4 Replace the downloaded chromedriver with the one existing in repo
 2. open repository location in cmd/powershell
 3. pip install -r requirements.txt
 4. python starter.py
