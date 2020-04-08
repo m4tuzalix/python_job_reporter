@@ -3,7 +3,7 @@
 
 # Info
 - Scraper gathers the offers which have appeared within 24 hours
-- Scraper creates the daily report from adverts which contains the key words provided by user
+- Scraper creates the daily report from offers which contain the key words provided by user
 - Scraper can be run anytime - it creates the date report and edits it (each day = one new xls file)
 - Scraper avoids duplicates
 - DB clears itself every 3 days
