@@ -2,21 +2,27 @@ import os, sys
 from os.path import dirname, join, abspath
 sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 from Pages.main import *
-from Database.database import Database
+from Excel_class.excel_reporting import Excel
 
-class Starter(Database):
+class Starter(Excel):
     def __init__(self):
-        Database.__init__(self)
+        Excel.__init__(self)
         self.webs = [JustJoinIt, LinkedIn]
-        self.final_links = []
     
     def start_fetching(self):
+        final_links = []
         for web in self.webs:
-            self.final_links.extend(x for x in web().fetching_data())
+            final_links.extend(x for x in web().fetching_data())
+        return final_links
     
-
-
+    def create_report(self, data, words):
+        result = self.add_data(data, words)
+        print("Finished")
+        return result #// boolean
 
 if __name__ == "__main__":
     start = Starter()
-    start.start_fetching()
+    key_words = ["developer"]
+    data = start.start_fetching()
+    start.create_report(data, key_words)
+    
