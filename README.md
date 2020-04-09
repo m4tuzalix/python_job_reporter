@@ -6,10 +6,11 @@
 - Scraper creates the daily report from offers which contain the key words provided by user
 - Scraper can be ran anytime - it creates the date report and edits it (each day = one new xls file)
 - Scraper avoids duplicates
-- DB clears itself every 3 days
+- DataBase clears itself daily
 
 # Setup
 - open starter.py in your editor
+- find variable 'city' and put the city you are interested about
 - find variable 'key_words' and add as many words as you want. I recommend max 3. 
 
 # Requirements
