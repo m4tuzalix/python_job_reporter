@@ -11,7 +11,7 @@ class Database(Connection):
     
     def db_main(self):
         self.cur.execute("CREATE TABLE IF NOT EXISTS links(id INTEGER PRIMARY KEY, link TEXT UNIQUE, date TEXT, time TEXT)")
-        self.cur.execute("DELETE FROM links WHERE date = ?", (str(self.date+timedelta(days=3)),))
+        self.cur.execute("DELETE FROM links WHERE date >= ?", (str(self.date+timedelta(days=3)),))
         self.commit()
         return True
 
