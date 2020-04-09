@@ -17,6 +17,7 @@ class ManualFetch(Database):
         self.days = 1 #// adverts created within the given number
         self.timer = 700 #// scrolling pixels value
         self.links_array = []
+        self.delay = 10
         self.db_main()
         print("Manual fetching started")
     
@@ -25,7 +26,7 @@ class ManualFetch(Database):
         self.options.add_argument("--enable-javascript")
         self.browser = webdriver.Chrome(path.abspath("chromedriver.exe"), chrome_options=self.options)
         self.browser.set_script_timeout(10)
-        self.browser.implicitly_wait(10)
+        self.browser.implicitly_wait(self.delay)
         self.browser.maximize_window()
         self.browser.get(self.link)
 
@@ -36,16 +37,17 @@ class ManualFetch(Database):
         link_href = link.find_element(By.TAG_NAME, "a").get_attribute("href")
         validation = self.browser.execute_script(main_js, self.days, self.city, self.city_name, link, self.date_posted, self.bar_scroll)
         if validation != False:
-            double_check = self.check_db(str(link_href))
             if "linkedin" in args:
                 refId = link_href.index("refId")
-                if double_check:
-                    self.add_links(str(link_href[:refId]))
-                    self.links_array.append(link_href)
+                double_check = self.check_db(str(link_href[:refId]))
             else:
-                if double_check:
+                double_check = self.check_db(str(link_href))
+            if double_check:
+                try:
+                    self.add_links(str(link_href[:refId]))
+                except:
                     self.add_links(str(link_href))
-                    self.links_array.append(link_href)
+                self.links_array.append(link_href)
         else:
             return False
         return True
@@ -55,7 +57,6 @@ class ManualFetch(Database):
             scrolling = self.browser.execute_script(scroll_js, self.bar_scroll, timer, self.link) #// Scrolling down triggers the divs to appear on the page
         except:
             return False
-
 
     def close_web(self):
         self.close()
