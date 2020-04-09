@@ -1,6 +1,10 @@
 from PageModels.manual_fetch_model import ManualFetch
+from PageModels.remote_fetching import RemoteFetch
 from Selectors.page_selectors import *
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 
 class JustJoinIt(ManualFetch):
     def __init__(self, city):
@@ -35,15 +39,19 @@ class LinkedIn(ManualFetch):
                 city_name=city,
                 bar_scroll = self.selector.bar_scroll,
                 date_posted=self.selector.date_posted)
+        self.delay = 0.5
         self.open_web()
     
     def fetching_data(self):
         search_results = self.browser.find_element(By.CSS_SELECTOR, self.selector.search_results).text
         while True:
-            found_results = len(self.get_all_links())
-            if int(search_results) == found_results:
+            try:
+                found_results = WebDriverWait(self.browser, self.delay).until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.selector.final_button)))
+                found_results.click()
+                self.scroll_down(self.timer)
                 break
-            self.scroll_down(self.timer)
+            except:
+                self.scroll_down(self.timer)
             self.timer += 99999
         for link in self.get_all_links():
             try:
@@ -52,3 +60,22 @@ class LinkedIn(ManualFetch):
                 continue
         self.close_web()
         return self.links_array
+
+class NoFluffJobs(RemoteFetch):
+    def __init__(self, city):
+        self.city = city
+        selector = nofluffjobs
+        super(NoFluffJobs, self).__init__(links=selector.links, pages=selector.pages, new=selector.new)
+
+    def fetching_data(self):
+        links_array = []
+        html = self.get_html(f"https://nofluffjobs.com/jobs/{self.city}?criteria=city%3D{self.city}&page=1")
+        pages = self.page_amount(html)
+        for i in range(1,pages+1):
+            html = self.get_html(f"https://nofluffjobs.com/jobs/{self.city}?criteria=city%3D{self.city}&page={str(i)}")
+            work = self.get_content(html, links_array)
+            if work == "No more":
+                break
+        self.close()
+        return links_array
+
