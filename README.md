@@ -26,7 +26,7 @@
 - Scraper can by run any time :)
 
 # v1.1 - UPDATE
-- Added one new website to scrap 
+- Added one new website to scrap (nofluffjobs)
 - fixed linkedin scraping(structure of the website has changed) 
 
 
