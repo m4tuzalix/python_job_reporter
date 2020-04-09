@@ -40,14 +40,14 @@ class ManualFetch(Database):
             if "linkedin" in args:
                 refId = link_href.index("refId")
                 double_check = self.check_db(str(link_href[:refId]))
-                if double_check:
-                    self.add_links(str(link_href[:refId]))
-                    self.links_array.append(link_href)
             else:
                 double_check = self.check_db(str(link_href))
-                if double_check:
+            if double_check:
+                try:
+                    self.add_links(str(link_href[:refId]))
+                except:
                     self.add_links(str(link_href))
-                    self.links_array.append(link_href)
+                self.links_array.append(link_href)
         else:
             return False
         return True
