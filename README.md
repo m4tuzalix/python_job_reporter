@@ -11,6 +11,7 @@
 - Open repo directory in cmd/powershell (lshift+rclick -> copy as path -> type in terminal "cd <paste the path here>" -> enter)
 - type in terminal pip install -r requirements.txt
 - to run the script, use the command "python scraper.py"
+- Script will return "Finished" in terminal once it has finished the job
 
 # Setup
 - open scraper.py in your editor
