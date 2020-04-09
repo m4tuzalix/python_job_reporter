@@ -18,7 +18,7 @@
 - find variable 'key_words' and put as many words as you want. I recommend max 3.
 
 # Info
-- Scraps the offers from given websites and based on keywords creates the report
+- Scraper gathers the offers from given websites and based on keywords creates the report
 - Scraper is based on simple slite3 db which holds the data to avoid the duplicates
 - DB clears itself every day
 - Scraper creates one xls file per day and edits it (if already existing then appends new data)
