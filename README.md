@@ -1,4 +1,4 @@
-# python_job_reporter
+# python_job_reporter v1.1
 
 # Requirements
 - Python 3.x
