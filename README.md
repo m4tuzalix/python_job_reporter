@@ -1,4 +1,4 @@
-# python_job_reporter v1.1 - Added one new website to scrap
+# python_job_reporter
 
 # Requirements
 - Python 3.x
@@ -24,6 +24,9 @@
 - DB clears itself every day
 - Scraper creates one xls file per day and edits it (if already existing then appends new data)
 - Scraper can by run any time :)
+
+# v1.1 - UPDATE
+- Added one new website to scrap, fixed linkedin scraping(structure of the website has changed) 
 
 
 
