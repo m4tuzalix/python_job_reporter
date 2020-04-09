@@ -25,7 +25,7 @@ main_js = """
     function justJoinScraper(){
         const date_posted = link.querySelector(date).innerText
         const city = link.querySelector(city_selector).innerText
-        if(String(city).includes(city_name)){
+        if(String(city).includes(city_name.slice(0,3))){
             if(String(date_posted).includes("New") != true){
                 const days_ago = days_checker(date_posted)
                 console.log(days_ago)
