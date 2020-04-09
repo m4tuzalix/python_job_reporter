@@ -8,6 +8,7 @@ class RemoteFetch(Database):
         self.new = new
         super(RemoteFetch, self).__init__()
         self.db_main()
+        print("Remote fetching started")
     
     def get_html(self, link):
         scrap = HTMLSession().get(link)
