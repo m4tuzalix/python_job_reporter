@@ -27,6 +27,7 @@
 
 # v1.1 - UPDATE
 - Added one new website to scrap (nofluffjobs)
+- Added remote scraping(requests based)
 - fixed linkedin scraping(structure of the website has changed) 
 
 
