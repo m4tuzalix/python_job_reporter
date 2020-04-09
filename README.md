@@ -6,7 +6,7 @@
 - Scraper creates the daily report from offers which contain the key words provided by user
 - Scraper can be ran anytime - it creates the date report and edits it (each day = one new xls file)
 - Scraper avoids duplicates
-- DataBase clears itself every 3 days
+- DataBase clears itself daily
 
 # Setup
 - open starter.py in your editor
