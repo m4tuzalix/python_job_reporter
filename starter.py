@@ -8,7 +8,7 @@ class Starter(Excel):
     def __init__(self, city):
         self.city = city
         Excel.__init__(self)
-        self.webs = [JustJoinIt, LinkedIn]
+        self.webs = [JustJoinIt, LinkedIn, NoFluffJobs]
     
     def start_fetching(self):
         final_links = []
@@ -23,8 +23,8 @@ class Starter(Excel):
 
 if __name__ == "__main__":
     key_words = ["developer"]
-    city = "warszawa".lower() #// no polish signs
-    start = Starter(city)
+    city = "wroclaw" #// no polish signs
+    start = Starter(city.lower())
     data = start.start_fetching()
     start.create_report(data, key_words)
     
