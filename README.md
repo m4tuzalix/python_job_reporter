@@ -1,4 +1,4 @@
-# python_job_reporter
+# python_job_reporter v1.1 - Added one new website to scrap
 
 # Requirements
 - Python 3.x
