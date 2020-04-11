@@ -14,7 +14,7 @@
 - Script will return "Finished" in terminal once it has finished the job
 
 # Setup
-- open scraper.py in your editor
+- open starter.py in your editor
 - find variable 'city' and put the city you are interested about
 - find variable 'key_words' and put as many words as you want. I recommend max 3.
 
