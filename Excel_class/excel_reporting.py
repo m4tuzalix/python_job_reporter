@@ -7,7 +7,6 @@ class Excel():
         self.wb = Workbook()
         self.ws = self.wb.active
         self.workbook_name = f"Day Reports/({self.date}).xlsx"
-        self.just_created = False #// to avoid double check after file creation
         try:
             self.load = load_workbook(self.workbook_name)
         except FileNotFoundError:
