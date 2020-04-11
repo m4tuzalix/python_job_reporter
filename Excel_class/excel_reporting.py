@@ -14,7 +14,6 @@ class Excel():
             for x in range(len(headers)):
                 self.ws.cell(row=1, column=x+1, value=headers[x]) #// +1 because it must be at least 1
             self.wb.save(self.workbook_name)
-            self.just_created = True
       
     def add_data(self, data, words):
         self.load = load_workbook(self.workbook_name)
