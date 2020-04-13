@@ -25,10 +25,13 @@
 - Scraper creates one xls file per day and edits it (if already existing then appends new data)
 - Scraper can by run any time :)
 
-# v1.1 - UPDATE
+# v1.1
 - Added one new website to scrap (nofluffjobs)
 - Added remote scraping(requests based)
 - fixed linkedin scraping(structure of the website has changed) 
+
+# Update 13.04.2020
+- fixed linkedin again
 
 
 
