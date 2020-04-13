@@ -52,6 +52,8 @@ class LinkedIn(ManualFetch):
                 break
             except:
                 self.scroll_down(self.timer)
+                if len(self.get_all_links()) == int(search_results):
+                    break
             self.timer += 99999
         for link in self.get_all_links():
             try:
