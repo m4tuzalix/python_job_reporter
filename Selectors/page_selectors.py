@@ -20,5 +20,5 @@ class nofluffjobs: #// requests-html + bs4
 
 class pracuj:
     links = "ul.results__list-container > li.results__list-container-item"
-    pages = "a.pagination_trigger"
+    next_page = "i[class='mdi mdi-chevron-right pagination_element-icon']"
     day = "span.offer-actions__date"
