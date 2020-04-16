@@ -80,4 +80,35 @@ class NoFluffJobs(RemoteFetch):
                 break
         self.close()
         return links_array
+    
+class Pracuj(ManualFetch):
+    def __init__(self, city):
+        self.city = city
+        self.selector = pracuj
+        super(Pracuj, self).__init__(link=f"https://www.pracuj.pl/praca/{self.city};wp?rd=0", city=self.city)
+        self.open_web()
+    
+    def fetching_data(self):
+        from datetime import datetime
+        pages = self.browser.find_elements(By.CSS_SELECTOR, self.selector.pages)
+        pages = int(pages[len(pages)-2].text)
+        day_now = datetime.now().day
+        for i in range(1,pages,1):
+            try:
+                self.browser.execute_script("""window.location = arguments[0]""", f"https://www.pracuj.pl/praca/{self.city};wp?rd=0&pn={str(i)}")
+                links = self.browser.find_elements(By.CSS_SELECTOR, self.selector.links)
+                for link in links:
+                    date_added = str(link.find_element(By.CSS_SELECTOR, self.selector.day).text).split(" ")[1]
+                    if int(date_added) == day_now:
+                       href = link.find_element(By.TAG_NAME, "a").get_attribute("href")
+                       double_check = self.check_db(href)
+                       if double_check:
+                           self.add_links(href)
+                           self.links_array.append(href)
+                    else:
+                        raise Exception("Fetched all")   
+            except Exception as e:
+                break
+        self.close()
+        return self.links_array
 
