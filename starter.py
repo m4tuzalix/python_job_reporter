@@ -8,7 +8,7 @@ class Starter(Excel):
     def __init__(self, city):
         self.city = city
         Excel.__init__(self)
-        self.webs = [JustJoinIt, LinkedIn, NoFluffJobs]
+        self.webs = [JustJoinIt, LinkedIn, NoFluffJobs, Pracuj]
     
     def start_fetching(self):
         final_links = []
