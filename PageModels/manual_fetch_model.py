@@ -19,7 +19,7 @@ class ManualFetch(Database):
         self.links_array = []
         self.delay = 10
         self.db_main()
-        print("Manual fetching started")
+        print(f"Manual fetching started: {self.link}")
     
     def open_web(self):
         self.options = webdriver.ChromeOptions()
