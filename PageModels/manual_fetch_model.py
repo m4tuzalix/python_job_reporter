@@ -24,7 +24,6 @@ class ManualFetch(Database):
     def open_web(self):
         self.options = webdriver.ChromeOptions()
         self.options.add_argument("--enable-javascript")
-        self.options.add_argument("--headless")
         self.browser = webdriver.Chrome(path.abspath("chromedriver.exe"), chrome_options=self.options)
         self.browser.set_script_timeout(10)
         self.browser.implicitly_wait(self.delay)

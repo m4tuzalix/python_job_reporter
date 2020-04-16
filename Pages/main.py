@@ -1,3 +1,6 @@
+import os, sys
+from os.path import dirname, join, abspath
+sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 from PageModels.manual_fetch_model import ManualFetch
 from PageModels.remote_fetching import RemoteFetch
 from Selectors.page_selectors import *
@@ -75,12 +78,12 @@ class NoFluffJobs(RemoteFetch):
         pages = self.page_amount(html)
         for i in range(1,pages+1):
             html = self.get_html(f"https://nofluffjobs.com/jobs/{self.city}?criteria=city%3D{self.city}&page={str(i)}")
-            work = self.get_content(html, links_array)
+            work = self.get_content(html, links_array, "https://nofluffjobs.com")
             if work == "No more":
                 break
         self.close()
         return links_array
-    
+
 class Pracuj(ManualFetch):
     def __init__(self, city):
         self.city = city
@@ -109,6 +112,5 @@ class Pracuj(ManualFetch):
                         raise Exception("Fetched all")   
             except Exception as e:
                 break
-        self.close()
+        self.close_web()
         return self.links_array
-

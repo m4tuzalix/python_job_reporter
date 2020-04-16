@@ -17,7 +17,7 @@ class nofluffjobs: #// requests-html + bs4
     links = "a[data-cy='nfjPostingListItem']"
     pages = "a[class='page-link']"
     new = "sup[class='text-danger text-uppercase new-label hide-mobile']"
-    
+
 class pracuj:
     links = "ul.results__list-container > li.results__list-container-item"
     pages = "a.pagination_trigger"

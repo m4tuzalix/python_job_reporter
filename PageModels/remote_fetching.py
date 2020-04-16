@@ -8,22 +8,23 @@ class RemoteFetch(Database):
         self.new = new
         super(RemoteFetch, self).__init__()
         self.db_main()
-        print("Remote fetching started")
+        print("Remote fetching started: NoFluffJobs")
     
     def get_html(self, link):
         scrap = HTMLSession().get(link)
         return scrap
     
     def page_amount(self, core):
-        pages = core.html.find(self.pages)
-        last_page = pages[len(pages)-2].text
-        return int(last_page)
+        page = core.html.find(self.pages)
+        return int(page[len(page)-2].text)
         
-    def get_content(self, core, array):
+    def get_content(self, core, array, page):
         try:
             links = core.html.find(self.links)
             for link in links:
-                href = "https://nofluffjobs.com"+link.attrs["href"]
+                href = link.attrs["href"]
+                if not page in href:
+                    href = page + href
                 day = link.find(self.new, first=True)
                 if "NEW" in str(day.text):
                     double_check = self.check_db(href)
@@ -34,4 +35,5 @@ class RemoteFetch(Database):
                    return "No more"
         except:
             return False
+       
         
