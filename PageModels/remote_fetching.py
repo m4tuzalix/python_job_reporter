@@ -26,7 +26,7 @@ class RemoteFetch(Database):
                 if not page in href:
                     href = page + href
                 day = link.find(self.new, first=True)
-                if "NEW" in str(day.text):
+                if "NOWA" in str(day.text) or "NEW" in str(day.text):
                     double_check = self.check_db(href)
                     if double_check:
                         self.add_links(href)
