@@ -36,5 +36,9 @@
 # Update 17.04.2020
 - added 4th portal
 
+# Update 18.04.2020
+- fixed nofluff jobs
+
+
 
 
