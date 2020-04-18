@@ -99,7 +99,7 @@ class Pracuj(ManualFetch):
                 links = self.browser.find_elements(By.CSS_SELECTOR, self.selector.links)
                 for link in links:
                     date_added = str(link.find_element(By.CSS_SELECTOR, self.selector.day).text).split(" ")[0]
-                    if int(date_added) == day_now:
+                    if int(date_added) >= day_now-1:
                        href = link.find_element(By.TAG_NAME, "a").get_attribute("href")
                        double_check = self.check_db(href)
                        if double_check:
