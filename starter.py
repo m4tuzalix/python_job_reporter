@@ -25,7 +25,7 @@ class Starter(Excel):
         return result #// boolean
 
 if __name__ == "__main__":
-    key_words = ["developer", "junior", "python", "engineer", "automation", "qa", "test"]
+    key_words = ["developer"]
     city = "wroclaw" #// no polish signs
     start = Starter(city.lower())
     data = start.start_fetching()
