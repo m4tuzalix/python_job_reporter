@@ -33,9 +33,14 @@ class ManualFetch(Database):
 
     def get_all_links(self):
         return self.browser.find_elements(By.CSS_SELECTOR, self.all_links)
+    
+    def get_position_name(self, link, position):
+        name = link.find_element(By.CSS_SELECTOR, position).text
+        return name
 
-    def link_validation(self, link, *args):
+    def link_validation(self, link, position_selector, *args):
         link_href = link.find_element(By.TAG_NAME, "a").get_attribute("href")
+        position_name = self.get_position_name(link, position_selector)
         validation = self.browser.execute_script(main_js, self.days, self.city, self.city_name, link, self.date_posted, self.bar_scroll)
         if validation != False:
             if "linkedin" in args:
@@ -45,10 +50,10 @@ class ManualFetch(Database):
                 double_check = self.check_db(str(link_href))
             if double_check:
                 try:
-                    self.add_links(str(link_href[:refId]))
+                    self.add_links(str(link_href[:refId]), position_name)
                 except:
-                    self.add_links(str(link_href))
-                self.links_array.append(link_href)
+                    self.add_links(str(link_href), position_name)
+                self.links_array.append([link_href, position_name])
         else:
             return False
         return True

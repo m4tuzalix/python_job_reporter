@@ -1,13 +1,10 @@
-import os, sys
-from os.path import dirname, join, abspath
-sys.path.insert(0, abspath(join(dirname(__file__), '..')))
 from PageModels.manual_fetch_model import ManualFetch
 from PageModels.remote_fetching import RemoteFetch
 from Selectors.page_selectors import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from queue import Queue
 
 class JustJoinIt(ManualFetch):
     def __init__(self, city):
@@ -25,7 +22,7 @@ class JustJoinIt(ManualFetch):
         while valid:
             try:
                 for link in self.get_all_links():
-                    valid = self.link_validation(link)
+                    valid = self.link_validation(link, self.selector.position)
                 self.scroll_down(self.timer)
                 self.timer += 700
             except:
@@ -60,7 +57,7 @@ class LinkedIn(ManualFetch):
             self.timer += 99999
         for link in self.get_all_links():
             try:
-                self.link_validation(link, "linkedin")
+                self.link_validation(link, self.selector.position, "linkedin")
             except:
                 continue
         self.close_web()
@@ -69,8 +66,8 @@ class LinkedIn(ManualFetch):
 class NoFluffJobs(RemoteFetch):
     def __init__(self, city):
         self.city = city
-        selector = nofluffjobs
-        super(NoFluffJobs, self).__init__(links=selector.links, pages=selector.pages, new=selector.new)
+        self.selector = nofluffjobs
+        super(NoFluffJobs, self).__init__(links=self.selector.links, pages=self.selector.pages, new=self.selector.new)
 
     def fetching_data(self):
         links_array = []
@@ -78,7 +75,7 @@ class NoFluffJobs(RemoteFetch):
         pages = self.page_amount(html)
         for i in range(1,pages+1):
             html = self.get_html(f"https://nofluffjobs.com/jobs/{self.city}?criteria=city%3D{self.city}&page={str(i)}")
-            work = self.get_content(html, links_array, "https://nofluffjobs.com")
+            work = self.get_content(html, self.selector.position, links_array, "https://nofluffjobs.com")
             if work == "No more":
                 break
         self.close()
@@ -98,13 +95,14 @@ class Pracuj(ManualFetch):
             try:
                 links = self.browser.find_elements(By.CSS_SELECTOR, self.selector.links)
                 for link in links:
+                    position_name = self.get_position_name(link, self.selector.position)
                     date_added = str(link.find_element(By.CSS_SELECTOR, self.selector.day).text).split(" ")[0]
                     if int(date_added) >= day_now-1:
                        href = link.find_element(By.TAG_NAME, "a").get_attribute("href")
                        double_check = self.check_db(href)
                        if double_check:
-                           self.add_links(href)
-                           self.links_array.append(href)
+                           self.add_links(href, position_name)
+                           self.links_array.append([href, position_name])
                     else:
                         raise Exception("Fetched all")
                 self.browser.execute_script("""

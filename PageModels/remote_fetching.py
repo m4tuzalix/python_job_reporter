@@ -18,22 +18,24 @@ class RemoteFetch(Database):
         page = core.html.find(self.pages)
         return int(page[len(page)-2].text)
         
-    def get_content(self, core, array, page):
+    def get_content(self, core, position, array, page):
         try:
             links = core.html.find(self.links)
             for link in links:
                 href = link.attrs["href"]
+                position_name = link.find(position, first=True).text
                 if not page in href:
                     href = page + href
                 day = link.find(self.new, first=True)
-                if "NOWA" in str(day.text) or "NEW" in str(day.text):
+                if "NOWA" in str(day.text):
                     double_check = self.check_db(href)
                     if double_check:
-                        self.add_links(href)
-                        array.append(href)
+                        self.add_links(href, position_name)
+                        array.append([href, position_name])
                 else:
-                   return "No more"
-        except:
+                    return "No more"
+        except Exception as e:
+            print(str(e))
             return False
        
         
