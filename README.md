@@ -39,6 +39,10 @@
 # Update 18.04.2020
 - fixed nofluff jobs
 
+# Update 27.04.2020
+- fixed pracuj
+- added new column to excel (Position name) for easier use
+
 
 
 
