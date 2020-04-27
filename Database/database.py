@@ -10,7 +10,7 @@ class Database(Connection):
         self.time = str(datetime.now().time())
     
     def db_main(self):
-        self.cur.execute("CREATE TABLE IF NOT EXISTS links(id INTEGER PRIMARY KEY, link TEXT UNIQUE, date TEXT, time TEXT)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS links(id INTEGER PRIMARY KEY, link TEXT, possition TEXT, date TEXT, time TEXT)")
         self.cur.execute("DELETE FROM links WHERE date != ?", (str(self.date),))
         self.commit()
         return True
@@ -25,6 +25,6 @@ class Database(Connection):
         self.commit()
         return result
 
-    def add_links(self,link):
-        self.cur.execute("INSERT INTO links VALUES(NULL,?,?,?)", (link,self.date,self.time,))
+    def add_links(self,link,possition):
+        self.cur.execute("INSERT INTO links VALUES(NULL,?,?,?,?)", (link, possition, self.date,self.time,))
         self.commit()
