@@ -19,6 +19,6 @@ class nofluffjobs: #// requests-html + bs4
     new = "sup[class='text-danger text-uppercase new-label hide-mobile']"
 
 class pracuj:
-    links = "ul.results__list-container > li.results__list-container-item"
+    links = "div#results > ul.results__list-container > li.results__list-container-item"
     next_page = "i[class='mdi mdi-chevron-right pagination_element-icon']"
     day = "span.offer-actions__date"
